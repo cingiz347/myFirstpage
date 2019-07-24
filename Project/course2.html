@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+color:#fff;
+background: #B3E5FC;
+font-family: 'Source Sans Pro', sans-serif;
+}
+#game{
+width: 330px;
+background: #03A9F4;
+padding:16px;
+text-align: center;
+margin:auto;
+}
+h1{
+margin:0 0 16px 0;
+border:solid 1px #fff;
+padding:5px;
+font-weight: 300;
+ 
+}
+span{
+font-size: 125%;
+padding:10px;
+}
+#result{
+width: 50px;
+}
+#answer{
+margin-top:10px;
+padding:5px;
+border:none;
+width: 100px;
+background: #0288D1;
+color:#fff;
+}
+#answer:hover{
+background: #8BC34A;
+}
+#False,#True{
+font-size: 150%;
+margin-top:10px;
+padding:10px;
+display: inline-block;
+}
+#True{
+background: #4CAF50;
+}
+#False{
+background: #D32F2F;
+}
+	</style>
+</head>
+<body>
+<div id="game">
+	<h1>Riyazi Hesablama</h1> 
+	<span id="Number1">0</span>
+	<span id="Operator">+</span>
+	<span id="Number2">0</span>
+	<span>=</span>
+	<input type="text" id="result">
+	<input type="button" id="answer" value="Cevabla">
+	<div style="clear: both;"></div>
+	<div id="True">0</div>
+	<div id="False">0</div>
+	<div style="clear: both;"></div>
+
+	
+</div>
+
+	<script type="text/javascript">
+		var Number1, Number2, Operator,result,answer,True=0,False=0;
+		Number1 = document.getElementById('Number1');
+		Number2 =document.getElementById('Number2');
+		Operator =document.getElementById('Operator');
+		result =document.getElementById('result');
+		answer =document.getElementById('answer');
+		True =document.getElementById('True');
+		False =document.getElementById('False');
+
+		Math.RandomNumber=function(min,max){
+			let number =Math.random()
+			number=number*(max-min);
+			number=Math.floor(number)+min;
+			return number;
+		}
+
+		 function newQuestion(){
+		 	let oparation =["+","-","*","/"];
+		 	Operator.textContent = oparation[Math.RandomNumber(0,4)];
+		 	Number1.textContent = Math.RandomNumber(0,50);
+		 	Number2.texContent = Math.RandomNumber(0,50);
+		 
+
+
+		 	if (Operator.textContent=="/") {
+		 		while(true){
+		 			Number2.textContent = Math.RandomNumber(0,50);
+		 			if (Number1.textContent % Number2.textContent==0){
+		 				break;
+
+		 			}
+
+		 		}
+		 	}
+
+		 }
+		
+
+         
+         window.onload = function(){
+         	newQuestion()
+         }
+         answer.onclick = function(){
+         	var ans,n1,n2;
+         	n1=Number(Number1.textContent);
+         	n2=Number(Number2.textContent);
+         	switch (Operator.textContent){
+         		case '+': ans=n1+n2;break;
+         		case '-': ans=n1-n2;break;
+         		case '/': ans=n1/n2;break;
+         		case '*': ans=n1*n2;break;
+         		
+         		default:break;
+         	}
+
+
+         	if (result.value==ans) {
+         		True.textContent=Number(True.textContent)+1;
+         	}
+         	else  {
+         		False.textContent=Number(False.textContent)+1;
+         	}
+         	newQuestion();
+         }	
+        
+
+
+
+	</script>
+
+</body>
+</html>
